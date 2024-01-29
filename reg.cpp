@@ -3,17 +3,12 @@
 #include <ieee.h>
 #include "../iohandler.hpp"
 
-netnode helper;
-
 static const char *const reg_names[] =
 {
 	"sp"/*"r0"*/, "r1", "r2", "r3", "r4", "r5", "r6", "r7", "r8", "r9", "r10", "r11", "r12", "r13", "r14", "r15",
 	"isp", "usp", "intb", "pc", "psw", "bpc", "bpsw", "fintv", "fpsw",
 	"cs", "ds",
 };
-
-static qstring device;
-static ioports_t ports;
 
 //----------------------------------------------------------------------
 // This old-style callback only returns the processor module object.
@@ -50,7 +45,7 @@ ssize_t idaapi rx63_t::on_event(ssize_t msgid, va_list va)
 			char cfgfile[QMAXFILE];
 			ioh.get_cfg_filename(cfgfile, sizeof(cfgfile));
 			if (choose_ioport_device2(&ioh.device, cfgfile, &cb))
-				ioh.set_device_name(device.c_str(), IORESP_AREA);
+				ioh.set_device_name(ioh.device.c_str(), IORESP_ALL);
 			break;
 		}
 		case processor_t::ev_out_header:
