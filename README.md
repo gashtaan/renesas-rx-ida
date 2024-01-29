@@ -1,5 +1,5 @@
-# rx63
-IDA processor module for Renesas RX63 MCU
+# Renesas RXv1
+IDA processor module for Renesas RXv1 MCU
 
 - added big-endian and little-endian type of cpu
 
