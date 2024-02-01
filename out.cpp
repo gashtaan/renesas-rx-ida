@@ -25,11 +25,6 @@ static const char * const cmemex[] =
     ".b", ".w", ".l", ".uw", ".ub", ".s", ".a"
 };
 
-static const char * const cregs[] =
-{
-    "psw", "pc", "usp", "fpsw", "", "", "", "", "bpsw", "bpc", "isp", "fintv", "intb", "", "", ""
-};
-
 void rx63_t::header(outctx_t &ctx) const
 {
     ctx.gen_header(GH_PRINT_PROC_ASM_AND_BYTESEX);
@@ -182,7 +177,7 @@ bool out_rx63_t::out_operand(const op_t &x)
             }
             break;
         case o_creg:
-            this->outreg(x.value & 0xf);
+            this->outreg(x.value);
             break;
 
         case o_phrase:

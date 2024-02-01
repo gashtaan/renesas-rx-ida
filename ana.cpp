@@ -591,7 +591,7 @@ void b2_cr(insn_t *insn)
 
     insn->size = 2;
     insn->Op1.type = o_creg;
-    insn->Op1.value = cr;
+    insn->Op1.value = cr + 16;
 }
 
 void b2_cr_(insn_t *insn)
@@ -603,7 +603,7 @@ void b2_cr_(insn_t *insn)
 
     insn->size = 2;
     insn->Op1.type = o_creg;
-    insn->Op1.value = cr;
+    insn->Op1.value = cr + 16;
 }
 
 void b2_cr_rd(insn_t *insn)
@@ -617,7 +617,7 @@ void b2_cr_rd(insn_t *insn)
 
     insn->size = 3;
     insn->Op1.type = o_creg;
-    insn->Op1.value = creg;
+    insn->Op1.value = creg + 16;
 
     set_reg(insn->Op2, data & 0xf);
 }
@@ -859,7 +859,7 @@ void b2_rs_cr(insn_t *insn)
     set_reg(insn->Op1, data >> 4);
 
     insn->Op2.type = o_creg;
-    insn->Op2.value = cr;
+    insn->Op2.value = cr + 16;
     insn->Op2.dtype = dt_byte;
     insn->size = 3;
 }
@@ -1039,7 +1039,7 @@ void b3_li_cr(insn_t *insn)
     insn->size = 3 + set_imm(insn->Op1, li, insn->ea + 3);
 
     insn->Op2.type = o_creg;
-    insn->Op2.value = cr;
+    insn->Op2.value = cr + 16;
     insn->Op2.dtype = dt_byte;
 }
 

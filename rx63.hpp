@@ -13,8 +13,8 @@
 enum RX63_registers
 {
 	r_r0, r_r1, r_r2, r_r3, r_r4, r_r5, r_r6, r_r7, r_r8, r_r9, r_r10, r_r11, r_r12, r_r13, r_r14, r_r15,
-	r_isp, r_usp, r_intb, r_pc, r_psw, r_bpc, r_bpsw, r_fintv, r_fpsw, 
-	r_cs, r_ds
+	r_psw = 16, r_pc, r_usp, r_fpsw, r_bpsw = 24, r_bpc, r_isp, r_fintv, r_intb,
+	r_cs = 32, r_ds
 };
 
 #define memex specflag1
@@ -25,15 +25,15 @@ enum RX63_registers
 
 enum rx63_cregs
 {
-	cr_psw = 0,
-	cr_pc = 1,
-	cr_usp = 2,
-	cr_fpsw = 3,
-	cr_bpsw = 8,
-	cr_bpc = 9,
-	cr_isp = 10,
-	cr_fintv = 11,
-	cr_intb = 12
+	cr_psw = 16,
+	cr_pc = 17,
+	cr_usp = 18,
+	cr_fpsw = 19,
+	cr_bpsw = 24,
+	cr_bpc = 25,
+	cr_isp = 26,
+	cr_fintv = 27,
+	cr_intb = 28
 };
 
 enum rx63_phrases

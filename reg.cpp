@@ -6,7 +6,7 @@
 static const char *const reg_names[] =
 {
 	"sp"/*"r0"*/, "r1", "r2", "r3", "r4", "r5", "r6", "r7", "r8", "r9", "r10", "r11", "r12", "r13", "r14", "r15",
-	"isp", "usp", "intb", "pc", "psw", "bpc", "bpsw", "fintv", "fpsw",
+	"psw", "pc", "usp", "fpsw", "", "", "", "", "bpsw", "bpc", "isp", "fintv", "intb", "", "", "",
 	"cs", "ds",
 };
 
