@@ -332,7 +332,7 @@ void b1_rd_rd2_imm8(insn_t *insn)
     insn->Op2.type = o_phrase;
     insn->Op2.phrase_type = rx63_phrasesf_r_2_r;
     insn->Op2.value = data >> 4;
-    insn->Op1.reg = data & 0xf;
+    insn->Op2.reg = data & 0xf;
     insn->size = 3;
 }
 
