@@ -12,7 +12,8 @@
 
 enum RX63_registers
 {
-	r_r0, r_r1, r_r2, r_r3, r_r4, r_r5, r_r6, r_r7, r_r8, r_r9, r_r10, r_r11, r_r12, r_r13, r_r14, r_r15,
+	r_sp = 0,
+	r_r0 = 0, r_r1, r_r2, r_r3, r_r4, r_r5, r_r6, r_r7, r_r8, r_r9, r_r10, r_r11, r_r12, r_r13, r_r14, r_r15,
 	r_psw = 16, r_pc, r_usp, r_fpsw, r_bpsw = 24, r_bpc, r_isp, r_fintv, r_intb,
 	r_cs = 32, r_ds
 };

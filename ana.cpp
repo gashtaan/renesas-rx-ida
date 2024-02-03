@@ -90,12 +90,12 @@ int set_imm(op_t &op, simm_t imm, ea_t ea)
             break;
         case simm8:
             size = 1;
-            op.value = get_hl8( ea );
+            op.value = char(get_hl8( ea ));
             op.dtype = dt_byte;
             break;
         case simm16:
             size = 2;
-            op.value = get_hl16( ea );
+            op.value = short(get_hl16( ea ));
             op.dtype = dt_word;
             break;
         case simm24:

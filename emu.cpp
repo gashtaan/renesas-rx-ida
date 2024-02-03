@@ -1,4 +1,5 @@
 #include "rx63.hpp"
+#include <frame.hpp>
 
 // handle immediate values
 static void handle_imm(ea_t ea) {
@@ -71,6 +72,55 @@ void rx63_t::handle_operand(const op_t &op, bool /*isload*/, const insn_t &insn,
     }
 }
 
+static void trace_sp(const insn_t &insn)
+{
+	func_t *pfn = get_func(insn.ea);
+	if ( pfn == NULL )
+		return;
+
+	sval_t delta = 0;
+	switch (insn.itype)
+	{
+		case RX63_add:
+			if (insn.Op1.type != o_imm || insn.Op2.reg != r_sp)
+				return;
+			delta = +insn.Op1.value;
+			break;
+		case RX63_add_:
+			if (insn.Op1.type != o_imm || insn.Op3.reg != r_sp)
+				return;
+			delta = +insn.Op1.value;
+			break;
+		case RX63_sub:
+			if (insn.Op1.type != o_imm || insn.Op2.reg != r_sp)
+				return;
+			delta = -insn.Op1.value;
+			break;
+		case RX63_push:
+		case RX63_pushc:
+			delta = -4;
+			break;
+		case RX63_pop:
+		case RX63_popc:
+			delta = +4;
+			break;
+		case RX63_pushm:
+			delta = -((insn.Op1.reg - insn.Op1.value) + 1);
+			delta <<= 2;
+			break;
+		case RX63_popm:
+			delta = +((insn.Op1.reg - insn.Op1.value) + 1);
+			delta <<= 2;
+			break;
+		case RX63_rtsd:
+			delta = +insn.Op1.value;
+			delta <<= 2;
+			break;
+	}
+
+	add_auto_stkpnt(pfn, insn.ea + insn.size, delta);
+}
+
 int idaapi rx63_t::emu(const insn_t &insn) const
 {
     uint32 feature = insn.get_canon_feature(ph);
@@ -100,6 +150,13 @@ int idaapi rx63_t::emu(const insn_t &insn) const
             }
         }
     }
+
+	if (may_trace_sp()) {
+		if (!flow)
+			recalc_spd(insn.ea);     // recalculate SP register for the next insn
+		else
+			trace_sp(insn);
+	}
 
     return 1;
 }
