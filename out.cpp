@@ -110,8 +110,8 @@ bool out_rx63_t::out_operand(const op_t &x)
                 this->outreg(x.reg);
             }
             else {
-                if (x.value != 0)
-                    this->out_value(x, OOFS_NOSIGN);
+                if (x.addr != 0)
+                    this->out_value(x, OOF_ADDR | OOFS_NOSIGN);
                 this->out_symbol('[');
                 this->outreg(x.reg);
                 this->out_symbol(']');

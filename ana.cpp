@@ -18,7 +18,7 @@ void set_reg(op_t &op, uint16 reg)
 void set_displ_reg(op_t &op, uint16 reg, uval_t value, memex_t memex) 
 {
     op.type = o_displ;
-    op.value = value;
+    op.addr = value;
     op.reg = reg;
     op.dtype = dt_word;
     op.memex = (char)memex;
