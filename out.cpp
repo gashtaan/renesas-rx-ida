@@ -110,7 +110,7 @@ bool out_rx63_t::out_operand(const op_t &x)
                 this->outreg(x.reg);
             }
             else {
-                if (x.addr != 0 || x.reg == r_sp)
+                if (x.addr != 0 || is_stroff(F, x.n) || is_stkvar(F, x.n))
                     this->out_value(x, OOF_ADDR | OOFS_NOSIGN);
                 this->out_symbol('[');
                 this->outreg(x.reg);
