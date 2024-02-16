@@ -1060,7 +1060,7 @@ void b3_mi_ld_rs_rd(insn_t *insn)
     memex_t memex = (memex_t)(data0 >> 6);
     ld_t ld = (ld_t)(data0 & 3);
     
-    insn->size = 4 + set_displ(insn->Op1, ld, memex, data1 >> 4, insn->ea + 3);
+    insn->size = 4 + set_displ(insn->Op1, ld, memex, data1 >> 4, insn->ea + 4);
     set_reg(insn->Op2, data1 & 0xf);
 }
 
